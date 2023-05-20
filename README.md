@@ -1,2 +1,2 @@
-code runner for nvim supperts 5+ languages
-adad
+code runner for nvim
+configured for python, c++, bash, ocaml, java, c#
