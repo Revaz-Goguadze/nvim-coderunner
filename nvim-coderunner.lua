@@ -10,8 +10,9 @@ function run_language()
     cmd = "g++ -o output % && ./output"
   elseif filetype == "java" then
  cmd = "javac % && java "
-  elseif filetype == "csharp" then
-    cmd = "mcs % && mono "
+elseif filetype == "cs" then
+  local filename = vim.fn.expand("%:t:r")
+  cmd = "mcs " .. "%" .. " && mono " .. filename .. ".exe"
   elseif filetype == "ocaml" then
     cmd = "utop"
     local filename = vim.fn.expand("%:p")
@@ -26,7 +27,9 @@ function run_language()
     return
   elseif filetype == "sh" then
     cmd = "bash %"
-  else
+    elseif filetype == "lua" then
+    cmd = "lua %"
+    else
     print("Unsupported filetype")
     return
   end
@@ -49,3 +52,4 @@ end
 
 -- Map the function to a keybinding
 vim.api.nvim_set_keymap("n", "<leader>r", ":lua run_language()<CR>", { noremap = true, silent = true })
+
